@@ -1,4 +1,5 @@
 using Learn.AspNetCore.Basic.DB;
+using Learn.AspNetCore.Basic.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Learn.AspNetCore.Basic
@@ -15,6 +16,12 @@ namespace Learn.AspNetCore.Basic
             builder.Services.AddDbContext<BasicDbContext>(x => x.UseSqlServer(conn));
 
             var app = builder.Build();
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                SeedData.Initialize(services);
+            }
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

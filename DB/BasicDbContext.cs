@@ -11,5 +11,11 @@ namespace Learn.AspNetCore.Basic.DB
         }
 
         public DbSet<Movie> Movies { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+        }
     }
 }
