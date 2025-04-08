@@ -32,5 +32,21 @@ namespace Learn.AspNetCore.Basic.Controllers
             return View(await _obj.Movies.ToListAsync());
         }
 
+        // GET: Movies/Edit/id?
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var movie = await _obj.Movies.FindAsync(id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
+            return View(movie);
+        }
+
     }
 }
