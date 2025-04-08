@@ -26,7 +26,11 @@ namespace Learn.AspNetCore.Basic.Controllers
             return View(movie);
         }
 
-        
+        // GET: Movie List
+        public async Task<IActionResult> Index()
+        {
+            return View(await _obj.Movies.ToListAsync());
+        }
 
     }
 }
