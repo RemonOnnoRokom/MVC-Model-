@@ -1,3 +1,6 @@
+using Learn.AspNetCore.Basic.DB;
+using Microsoft.EntityFrameworkCore;
+
 namespace Learn.AspNetCore.Basic
 {
     public class Program
@@ -8,6 +11,8 @@ namespace Learn.AspNetCore.Basic
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            var conn = builder.Configuration.GetConnectionString("DataBaseConnection");
+            builder.Services.AddDbContext<BasicDbContext>(x => x.UseSqlServer(conn));
 
             var app = builder.Build();
 
